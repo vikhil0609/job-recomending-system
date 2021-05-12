@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href= "{{ url_for('static',filename='styles/theme.css') }}">
 <style>
 body {
     /* width: 100%; */
@@ -114,12 +113,21 @@ button{
 </style>
 </head>
    <body>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <!-- Do something with the message -->
+                    {{ message }}
+
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
       <h1>Get Your Dream Job Within Seconds!!!</h1>
       <div class="reg-cont">
          <div class="slider"></div>
              <div class="frm">
              <h2>Write your skills here..</h2>
-            <form action = "http://localhost:5000/result" method = "POST">
+            <form action = "/result" method = "POST">
                <input type = "text"  name = "Job" />
                <button class="submit">Submit!</button>
             </form>
